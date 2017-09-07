@@ -11,7 +11,7 @@ var app = express();
 
 const clientUrl = (process.env.CLIENT_URL || '*');
 
-app.set('port', (process.env.PORT || 8081));
+app.set('port', (process.env.PORT || 8080));
 // Below 2 statements need to be removed
 app.set('views', path.join(__dirname, '/src/views'));
 
