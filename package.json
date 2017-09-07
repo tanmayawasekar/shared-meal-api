@@ -10,7 +10,8 @@
     "start": "node app.js",
     "dev": "npm i && gulp",
     "qa": "npm i && gulp qa",
-    "env": "npm i && gulp env"
+    "env": "npm i && gulp env",
+    "test": "mocha"
   },
   "author": "Tanmay Awasekar",
   "license": "ISC",
@@ -29,9 +30,11 @@
     "pm2": "^2.4.2"
   },
   "devDependencies": {
+    "chai": "^4.1.2",
     "eslint": "^3.18.0",
     "gulp": "^3.9.1",
     "gulp-watch": "^4.3.11",
+    "mocha": "^3.5.0",
     "run-sequence": "^1.2.2"
   }
 }
