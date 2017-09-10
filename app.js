@@ -45,8 +45,12 @@ app.use(function(err, req, res, next) {
 app.use(helmet());
 
 //Best practices app settings
-app.set('title', 'Shared-Meal');
+app.set('title', 'share-a-meal-api');
 app.set('query parser', `extended`);
+
+app.get('/', (req, res) => {
+  res.send('Connected To share-a-meal-api');
+});
 
 app.listen(app.get('port'), () => {
   console.log(`Find the server at: http://localhost:${app.get('port')}/`); // eslint-disable-line no-console

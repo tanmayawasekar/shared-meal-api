@@ -1,3 +1,4 @@
+
 FROM node:6
 
 # Create app directory
