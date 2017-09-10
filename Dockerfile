@@ -7,7 +7,6 @@ ADD . /var/app/current
 WORKDIR /var/app/current
 
 # Install app dependencies
-RUN npm install
 
 EXPOSE 8080
 EXPOSE 61109
