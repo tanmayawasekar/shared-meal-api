@@ -16,6 +16,7 @@ deployment:
   prod:
     branch: master
     commands:
+      - chmod +x ./deploy.sh
       - ./deploy.sh
       # - docker login -e "$DOCKER_EMAIL" -u "$DOCKER_USER" -p "$DOCKER_PASS"
       # - docker build -t "tanmayawasekar/share-a-meal-api:$CIRCLE_BUILD_NUM" .
