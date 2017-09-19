@@ -9,6 +9,7 @@ dependencies:
 
   post:
     - docker build -t tanmayawasekar/share-a-meal-api:$CIRCLE_BUILD_NUM .
+    - docker login --username=tanmayawasekar --email=tanmayawasekar@gmail.com --password=7825bheja
     - docker push tanmayawasekar/share-a-meal-api:$CIRCLE_BUILD_NUM
 
 test:
