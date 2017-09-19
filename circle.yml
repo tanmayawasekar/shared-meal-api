@@ -3,6 +3,9 @@ machine:
     - docker
 
 dependencies:
+  pre:
+    - sudo pip install awsebcli
+
   post:
     - docker build -t tanmayawasekar/share-a-meal-api:$CIRCLE_BUILD_NUM .
 
@@ -11,16 +14,9 @@ test:
     - docker run -d -p 8080:8080 --name share-a-meal-api tanmayawasekar/share-a-meal-api:$CIRCLE_BUILD_NUM; sleep 10
     - curl --retry 10 --retry-delay 5 localhost:8080 | grep "Hello World!"
     
-
 deployment:
-  prod:
+  production:
     branch: master
     commands:
-      - chmod +x ./deploy.sh
-      - ./deploy.sh
-      # - docker login -e "$DOCKER_EMAIL" -u "$DOCKER_USER" -p "$DOCKER_PASS"
-      # - docker build -t "tanmayawasekar/share-a-meal-api:$CIRCLE_BUILD_NUM" .
-      # - docker push "tanmayawasekar/share-a-meal-api:$CIRCLE_BUILD_NUM"
-      # - sed -i'' -e "s;%BUILD_NUM%;$CIRCLE_BUILD_NUM;g" ./.deploy/Dockerrun.aws.json
-      # - cd .deploy && eb init -r us-east-1 getantibody
-      # - cd .deploy && eb deploy -l $CIRCLE_BUILD_NUM
+      - bash ./setup-eb.sh
+      - eb deploy
