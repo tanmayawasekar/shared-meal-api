@@ -1,33 +1,6 @@
 machine:
   services:
     - docker
-
-dependencies:
-  pre:
-    - sudo apt-get install python-dev
-    - sudo pip install awsebcli
-
-  post:
-    - docker build -t tanmayawasekar/share-a-meal-api:$CIRCLE_BUILD_NUM .
-    - docker login --username=tanmayawasekar --email=tanmayawasekar@gmail.com --password=7825bheja
-    - docker push tanmayawasekar/share-a-meal-api:$CIRCLE_BUILD_NUM
-
-test:
-  post:
-    - docker run -d -p 8080:8080 --name share-a-meal-api tanmayawasekar/share-a-meal-api:$CIRCLE_BUILD_NUM; sleep 10
-    - curl --retry 10 --retry-delay 5 localhost:8080 | grep "Hello World!"
-    
-deployment:
-  production:
-    branch: master
-    commands:
-      - bash ./setup-eb.sh
-      - eb deploy
-
-
-machine:
-  services:
-    - docker
   python:
     version: 2.7
 dependencies:
