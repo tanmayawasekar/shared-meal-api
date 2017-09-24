@@ -34,7 +34,8 @@ jobs:
           command: npm test
   deploy:
     working_directory: ~/share-a-meal-api
-    docker: circleci/python:latest
+    docker: 
+      - image: circleci/python:latest
     steps:
       - checkout
       - run:
