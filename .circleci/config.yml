@@ -14,7 +14,7 @@ jobs:
             docker build -t "tanmayawasekar/share-a-meal-api:$CIRCLE_BUILD_NUM" .
             sed -i'' -e "s;%BUILD_NUM%;$CIRCLE_BUILD_NUM;g" ./.deploy/Dockerrun.aws.json
             docker push "tanmayawasekar/share-a-meal-api:$CIRCLE_BUILD_NUM"
-  build:
+  afterbuild:
     working_directory: ~/share-a-meal-api
     # The primary container is an instance of the first list image listed. Your build commands run in this container.
     docker:
@@ -61,6 +61,6 @@ workflows:
   build:
     jobs:
       - preBuild
-      - build
+      - afterbuild
         requires:
           - preBuild
