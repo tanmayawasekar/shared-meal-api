@@ -9,14 +9,14 @@ jobs:
       - image: mongo:3.4.4
     steps:
       - checkout
-      - run:
-          name: Update npm
-          command: 'sudo npm install -g npm@latest'
+      # - run:
+      #     name: Update npm
+      #     command: 'sudo npm install -g npm@latest'
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
           name: Install npm process
-          command: npm i -g process-nextick-args util-deprecate
+          command: npm i process-nextick-args util-deprecate
       - run: 
           name: Npm Install
           command: npm install
