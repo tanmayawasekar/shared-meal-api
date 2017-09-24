@@ -7,11 +7,9 @@ jobs:
       - image: circleci/node:6
     # The secondary container is an instance of the second listed image which is run in a common network where ports exposed on the primary container are available on localhost.   
       - image: mongo:3.4.4
+      - image: python:3.6.1
     steps:
       - checkout
-      # - run:
-      #     name: Update npm
-      #     command: 'sudo npm install -g npm@latest'
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
@@ -24,39 +22,15 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - node_modules
-  # test:
-  #   docker:
-  #     - image: circleci/node:6  
-  #     - image: mongo:3.4.4
-  #   steps:
-  #     - checkout
-  #     - restore_cache:
-  #         key: dependency-cache-{{ checksum "package.json" }}
-  #     - run:
-  #         name: Install npm process
-  #         command: npm i process-nextick-args util-deprecate
-  #     - run: 
-  #         name: Npm Install
-  #         command: npm install
-  #     - save_cache:
-  #         key: dependency-cache-{{ checksum "package.json" }}
-  #         paths:
-  #           - node_modules
-  #     - run:
-  #         name: Test
-  #         command: npm test
-  #     - store_artifacts:
-  #         path: test-results.xml
-  #         prefix: tests
-  #     - store_artifacts:
-  #         path: coverage
-  #         prefix: coverage
-  deploy:
-    docker:
-      - image: circleci/python:3.6.1
-      - image: circleci/node:6
-    steps:
-      - checkout
+      - run:
+          name: Test
+          command: npm test
+      - store_artifacts:
+          path: test-results.xml
+          prefix: tests
+      - store_artifacts:
+          path: coverage
+          prefix: coverage
       - run:
           name: wow
           command: |
@@ -66,42 +40,12 @@ jobs:
             docker build -t "tanmayawasekar/share-a-meal-api:$CIRCLE_BUILD_NUM" .
             sed -i'' -e "s;%BUILD_NUM%;$CIRCLE_BUILD_NUM;g" ./.deploy/Dockerrun.aws.json
             eb deploy -l $CIRCLE_BUILD_NUM
-
       
 workflows:
   version: 2
-  build_test_deploy:
+  build:
     jobs:
-      # - build
-      # - test:
-      #     requires:
-      #       - build
-      #     filters:
-      #       branches:
-      #         only: master
-      - deploy:
-          requires:
-            - build
-          filters:
+      - build
+         filters:
             branches:
               only: master
-#        machine:
-#   services:
-#     - docker
-#   python:
-#     version: 2.7
-# dependencies:
-#   pre:
-#     - sudo apt-get install python-dev
-#     - pip install awsebcli
-# deployment:
-#   production:
-#     branch: master
-#     commands:
-#       - docker login -e "tanmayawasekar@gmail.com" -u "tanmayawasekar" -p "7825bheja"
-#       - docker build -t "tanmayawasekar/share-a-meal-api:$CIRCLE_BUILD_NUM" .
-#       # - docker push "tanmayawasekar/share-a-meal-api:$CIRCLE_BUILD_NUM"
-#       - sed -i'' -e "s;%BUILD_NUM%;$CIRCLE_BUILD_NUM;g" ./.deploy/Dockerrun.aws.json
-#       - bash ./setup-eb.sh
-#       -  eb init
-#       -  eb deploy -l $CIRCLE_BUILD_NUM
