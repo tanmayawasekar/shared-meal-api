@@ -45,11 +45,11 @@ jobs:
             name: install pip3
             command: sudo pip3 install awsebcli
       - run:   
-            name: set eb-cli ebs   
-            command: eb use ShareAMeal-env --profile eb-cli
+            name: set default ebs   
+            command: eb use ShareAMeal-env --profile default
       - run:
             name: deploy and watch it work
-            command: eb deploy -l $CIRCLE_PREVIOUS_BUILD_NUM --profile eb-cli
+            command: eb deploy -l $CIRCLE_PREVIOUS_BUILD_NUM --profile default
 workflows:
   version: 2
   build_and_test_and_deploy:
