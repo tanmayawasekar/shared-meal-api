@@ -3,11 +3,11 @@ branch-defaults:
     environment: ShareAMeal-env
 environment-defaults:
   ShareAMeal-env:
-    branch: null
-    repository: null
+    branch: master
+    repository: shared-meal-api
 global:
   application_name: share-a-meal
-  default_ec2_keyname: null
+  default_ec2_keyname: aws-eb
   default_platform: Docker 17.03.1-ce
   default_region: ap-south-1
   include_git_submodules: true
