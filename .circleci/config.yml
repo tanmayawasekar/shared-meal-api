@@ -5,17 +5,18 @@ jobs:
     working_directory: ~/share-a-meal-api
      # The primary container is an instance of the first list image listed. Your build commands run in this container.
     docker:
-      - image: circleci/node:6
+      - image: docker:17.05.0-ce-git
     steps:
       - checkout
-      - run:
-          name: Install Docker client
-          command: |
-            set -x
-            VER="17.03.0-ce"
-            curl -L -o /tmp/docker-$VER.tgz https://get.docker.com/builds/Linux/x86_64/docker-$VER.tgz
-            tar -xz -C /tmp -f /tmp/docker-$VER.tgz
-            sudo mv /tmp/docker/* /usr/bin
+      - setup_remote_docker
+      # - run:
+      #     name: Install Docker client
+      #     command: |
+      #       set -x
+      #       VER="17.03.0-ce"
+      #       curl -L -o /tmp/docker-$VER.tgz https://get.docker.com/builds/Linux/x86_64/docker-$VER.tgz
+      #       tar -xz -C /tmp -f /tmp/docker-$VER.tgz
+      #       sudo mv /tmp/docker/* /usr/bin
       - run:
           name: Build 1
           command: sudo docker login -u "tanmayawasekar" -p "7825bheja"
