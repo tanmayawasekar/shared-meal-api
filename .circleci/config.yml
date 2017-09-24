@@ -26,36 +26,7 @@ jobs:
       - run:
           name: Build 3
           command: docker push "tanmayawasekar/share-a-meal-api:$CIRCLE_BUILD_NUM"
-  test:
-    working_directory: ~/share-a-meal-api
-    # The primary container is an instance of the first list image listed. Your build commands run in this container.
-    docker:
-      - image: tanmayawasekar/share-a-meal-api:$CIRCLE_BUILD_NUM
-    # The secondary container is an instance of the second listed image which is run in a common network where ports exposed on the primary container are available on localhost.   
-    steps:
-      - checkout
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-      - run:
-          name: Install npm process
-          command: npm i process-nextick-args util-deprecate
-      - run: 
-          name: Npm Install
-          command: npm install
-      - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-          paths:
-            - node_modules
-      - run:
-          name: Test
-          command: npm test
-      - store_artifacts:
-          path: test-results.xml
-          prefix: tests
-      - store_artifacts:
-          path: coverage
-          prefix: coverage
-  deploy:
+  deploygg:
     working_directory: ~/share-a-meal
     docker: circleci/python:latest
     steps:
@@ -71,9 +42,6 @@ workflows:
   gg:
     jobs:
       - build
-      - test:
-          requires:
-            - build
-      - deploy:
+      - deploygg:
           requires:
             - build
