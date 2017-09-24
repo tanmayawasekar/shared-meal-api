@@ -42,15 +42,20 @@ jobs:
       - store_artifacts:
           path: coverage
           prefix: coverage
-      - deploy:
-          name: Deploy Master to AWS EBS 
-          command: |
-              sudo apt-get install python-dev
-              pip install awsebcli
-              docker login -e "tanmayawasekar@gmail.com" -u "tanmayawasekar" -p "7825bheja"
-              docker build -t "tanmayawasekar/share-a-meal-api:$CIRCLE_BUILD_NUM" .
-              sed -i'' -e "s;%BUILD_NUM%;$CIRCLE_BUILD_NUM;g" ./.deploy/Dockerrun.aws.json
-              eb deploy -l $CIRCLE_BUILD_NUM
+  deploy:
+    docker:
+      - image: circleci/node:6
+    steps:
+      - checkout
+      -run:
+        name: wow
+        command: |
+          sudo apt-get install python-dev
+          pip install awsebcli
+          docker login -e "tanmayawasekar@gmail.com" -u "tanmayawasekar" -p "7825bheja"
+          docker build -t "tanmayawasekar/share-a-meal-api:$CIRCLE_BUILD_NUM" .
+          sed -i'' -e "s;%BUILD_NUM%;$CIRCLE_BUILD_NUM;g" ./.deploy/Dockerrun.aws.json
+          eb deploy -l $CIRCLE_BUILD_NUM
 
       
 workflows:
