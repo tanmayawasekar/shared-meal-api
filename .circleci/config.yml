@@ -10,14 +10,6 @@ jobs:
       - checkout
       - setup_remote_docker
       - run:
-          name: Install dependencies
-          command: |
-            apk add --no-cache \
-              py-pip=9.0.0-r1
-            pip install \
-              docker-compose==1.12.0 \
-              awscli==1.11.76
-      - run:
           name: Build 1
           command: docker login -u "tanmayawasekar" -p "7825bheja"
       - run:
@@ -25,23 +17,9 @@ jobs:
           command: docker build -t "tanmayawasekar/share-a-meal-api:$CIRCLE_BUILD_NUM" .
       - run:
           name: Build 3
-          command: docker push "tanmayawasekar/share-a-meal-api:$CIRCLE_BUILD_NUM"
-  deploygg:
-    working_directory: ~/share-a-meal
-    docker: circleci/python:latest
-    steps:
-      - checkout
-      - run:
-            name: deploy and watch it work
-            command: |
-              sudo apt-get install python-dev
-              pip install awsebcli
-              eb deploy -l $CIRCLE_BUILD_NUM    
+          command: docker push "tanmayawasekar/share-a-meal-api:$CIRCLE_BUILD_NUM" 
 workflows:
   version: 2
-  gg:
+  build_and_test_and_deploy:
     jobs:
       - build
-      - deploygg:
-          requires:
-            - build
