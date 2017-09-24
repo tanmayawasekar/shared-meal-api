@@ -9,7 +9,7 @@ jobs:
       - checkout
       - run:
           name: Build 1
-          command: docker login -e "tanmayawasekar@gmail.com" -u "tanmayawasekar" -p "7825bheja"
+          command: docker login -u "tanmayawasekar" -p "7825bheja"
       - run:
           name: Build 2
           command: docker build -t "tanmayawasekar/share-a-meal-api:$CIRCLE_BUILD_NUM" .
