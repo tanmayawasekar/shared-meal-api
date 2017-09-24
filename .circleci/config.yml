@@ -1,5 +1,6 @@
 application: share-a-meal-api
 version: 2
+some_time: $CIRCLE_BUILD_NUM
 jobs:
   build:
     working_directory: ~/share-a-meal-api
@@ -20,7 +21,7 @@ jobs:
   test:
     working_directory: ~/share-a-meal-api
     docker:
-      - image: tanmayawasekar/share-a-meal-api:$CIRCLE_BUILD_NUM
+      - image: tanmayawasekar/share-a-meal-api:$some_time
     steps:
       - checkout
       - run:
