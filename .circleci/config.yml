@@ -34,7 +34,7 @@ jobs:
           command: |
             # sudo add-apt-repository ppa:jonathonf/python-3.6
             sudo apt-get update
-            sudo apt-get install python3.6
+            sudo apt-get install python2.7
             sudo apt-get install python-dev
             pip install awsebcli
             docker login -e "tanmayawasekar@gmail.com" -u "tanmayawasekar" -p "7825bheja"
