@@ -14,10 +14,10 @@ jobs:
           command: docker login -u "tanmayawasekar" -p "7825bheja"
       - run:
           name: Docker Build
-          command: docker build -t "tanmayawasekar/share-a-meal-api:$CIRCLE_BUILD_NUM" .
+          command: docker build -t "tanmayawasekar/share-a-meal-api:$some_time" .
       - run:
           name: Docker Push
-          command: docker push "tanmayawasekar/share-a-meal-api:$CIRCLE_BUILD_NUM" 
+          command: docker push "tanmayawasekar/share-a-meal-api:$some_time" 
   test:
     working_directory: ~/share-a-meal-api
     docker:
