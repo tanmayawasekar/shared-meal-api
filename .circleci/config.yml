@@ -9,15 +9,16 @@ jobs:
       - checkout
       - setup_remote_docker
       - run:
-          name: Build 1
+          name: Docker Login
           command: docker login -u "tanmayawasekar" -p "7825bheja"
       - run:
-          name: Build 2
+          name: Docker Build
           command: docker build -t "tanmayawasekar/share-a-meal-api:$CIRCLE_BUILD_NUM" .
       - run:
-          name: Build 3
+          name: Docker Push
           command: docker push "tanmayawasekar/share-a-meal-api:$CIRCLE_BUILD_NUM" 
   test:
+    working_directory: ~/share-a-meal-api
     docker:
       - image: tanmayawasekar/share-a-meal-api:$CIRCLE_BUILD_NUM
     steps:
