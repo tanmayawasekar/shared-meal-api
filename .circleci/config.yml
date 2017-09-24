@@ -15,10 +15,11 @@ jobs:
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
-          name: Install npm wee
-          command: |
-              npm i process-nextick-args util-deprecate
-              npm install
+          name: Install npm process
+          command: npm i process-nextick-args util-deprecate
+      - run 
+          name: Npm Install
+          command: npm install
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
