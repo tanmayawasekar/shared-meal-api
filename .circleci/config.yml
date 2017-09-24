@@ -8,14 +8,14 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Build 1
-          command: docker login -e "tanmayawasekar@gmail.com" -u "tanmayawasekar" -p "7825bheja"
-        - run:
-            name: Build 2
-            command: docker build -t "tanmayawasekar/share-a-meal-api:$CIRCLE_BUILD_NUM" .
+        name: Build 1
+        command: docker login -e "tanmayawasekar@gmail.com" -u "tanmayawasekar" -p "7825bheja"
       - run:
-            name: Build 3
-            command: docker push "tanmayawasekar/share-a-meal-api:$CIRCLE_BUILD_NUM"
+        name: Build 2
+        command: docker build -t "tanmayawasekar/share-a-meal-api:$CIRCLE_BUILD_NUM" .
+      - run:
+        name: Build 3
+        command: docker push "tanmayawasekar/share-a-meal-api:$CIRCLE_BUILD_NUM"
   test:
     working_directory: ~/share-a-meal-api
     # The primary container is an instance of the first list image listed. Your build commands run in this container.
