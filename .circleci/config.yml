@@ -50,9 +50,6 @@ workflows:
       - test:
           requires:
             - build
-          filters:
-            branches:
-              only: master
       - deploy:
           requires:
             - test
