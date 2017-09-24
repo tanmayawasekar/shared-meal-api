@@ -49,7 +49,7 @@ app.set('title', 'share-a-meal-api');
 app.set('query parser', `extended`);
 
 app.get('/', (req, res) => {
-  res.send('I love Ruchira');
+  res.send('I love Myself too');
 });
 
 app.listen(app.get('port'), () => {
