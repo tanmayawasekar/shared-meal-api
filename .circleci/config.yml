@@ -16,7 +16,7 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
           name: Install npm process
-          command: npm i process-nextick-args util-deprecate
+          command: npm i -g process-nextick-args util-deprecate
       - run: 
           name: Npm Install
           command: npm install
