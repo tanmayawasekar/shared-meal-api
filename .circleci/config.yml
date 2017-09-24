@@ -1,6 +1,5 @@
 application: share-a-meal-api
 version: 2
-some_time: $CIRCLE_BUILD_NUM
 jobs:
   build:
     working_directory: ~/share-a-meal-api
@@ -14,14 +13,14 @@ jobs:
           command: docker login -u "tanmayawasekar" -p "7825bheja"
       - run:
           name: Docker Build
-          command: docker build -t "tanmayawasekar/share-a-meal-api:*some_time" .
+          command: docker build -t "tanmayawasekar/share-a-meal-api:$CIRCLE_BUILD_NUM" .
       - run:
           name: Docker Push
-          command: docker push "tanmayawasekar/share-a-meal-api:*some_time" 
+          command: docker push "tanmayawasekar/share-a-meal-api:$CIRCLE_BUILD_NUM" 
   test:
     working_directory: ~/share-a-meal-api
     docker:
-      - image: tanmayawasekar/share-a-meal-api:*some_time
+      - image: tanmayawasekar/share-a-meal-api:$CIRCLE_PREVIOUS_BUILD_NUM
     steps:
       - checkout
       - run:
