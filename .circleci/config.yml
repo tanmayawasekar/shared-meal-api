@@ -45,7 +45,7 @@ jobs:
   deploy:
     docker:
       - image: circleci/node:6
-      - image: circleci/python:2.7
+      - image: circleci/python:3.6.1
     steps:
       - checkout
       - run:
