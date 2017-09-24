@@ -43,7 +43,7 @@ jobs:
             command: sudo apt-get install python-dev
       - run:
             name: install pip3
-            command: pip3 install awsebcli
+            command: sudo pip3 install awsebcli
       - run:
             name: deploy and watch it work
             command: eb deploy -l $CIRCLE_PREVIOUS_BUILD_NUM
