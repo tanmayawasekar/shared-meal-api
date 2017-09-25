@@ -49,7 +49,7 @@ jobs:
             command: sudo bash ./setup-eb.sh
       - run:
             name: deploy and watch it work
-            command: eb deploy --profile default
+            command: eb codesource local && eb deploy --profile default
 workflows:
   version: 2
   build_and_test_and_deploy:
