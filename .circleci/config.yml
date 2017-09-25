@@ -46,10 +46,10 @@ jobs:
             command: sudo pip3 install awsebcli
       - run:
           name: install pip3
-          command: eb init share-a-meal-api ShareAMeal-env.apwkphfnis.ap-south-1.elasticbeanstalk.com
+          command: eb init share-a-meal-api
       - run:
             name: deploy and watch it work
-            command: eb deploy
+            command: eb deploy --profile default
 workflows:
   version: 2
   build_and_test_and_deploy:
