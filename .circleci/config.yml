@@ -47,6 +47,9 @@ jobs:
       - run:
             name: setup ebs
             command: sudo bash ./setup-eb.sh
+      - run:   
+            name: set eb-cli ebs   
+            command: eb use ShareAMeal-env
       - run:
             name: deploy and watch it work
             command: eb deploy -l $CIRCLE_PREVIOUS_BUILD_NUM
