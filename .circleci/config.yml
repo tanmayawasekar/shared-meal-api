@@ -45,8 +45,11 @@ jobs:
             name: install pip3
             command: sudo pip3 install awsebcli
       - run:
+          name: install pip3
+          command: eb init --url ShareAMeal-env.apwkphfnis.ap-south-1.elasticbeanstalk.com
+      - run:
             name: deploy and watch it work
-            command: eb codesource local && eb deploy --profile default
+            command: eb deploy
 workflows:
   version: 2
   build_and_test_and_deploy:
