@@ -45,9 +45,6 @@ jobs:
             name: install pip3
             command: sudo pip3 install awsebcli
       - run:
-            name: setup ebs
-            command: sudo bash ./setup-eb.sh
-      - run:
             name: deploy and watch it work
             command: eb codesource local && eb deploy --profile default
 workflows:
