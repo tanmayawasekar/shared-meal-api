@@ -46,12 +46,12 @@ jobs:
             command: sudo pip3 install awsebcli
       - run:
           name: install pip3
-          command: cd .deploy && eb init -r ap-south-1 share-a-meal-api
+          command: cd .deploy && eb init share-a-meal-api -r ap-south-1 --timeout 2
       - run:
             name: deploy and watch it work
-            command: cd .deploy && eb deploy -l $CIRCLE_PREVIOUS_BUILD_NUM
+            command: cd .deploy && eb deploy -l $CIRCLE_PREVIOUS_BUILD_NUM --timeout 2
 workflows:
-  version: 2
+  version: 2 eb init thesis -p Node.js -r us-west-2
   build_and_test_and_deploy:
     jobs:
       - build
