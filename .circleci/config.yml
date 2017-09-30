@@ -48,6 +48,9 @@ jobs:
           name: install pip3
           command: eb use ShareAMeal-env --profile default
       - run:
+            name: check
+            command: cat ~/.aws/config
+      - run:
             name: deploy and watch it work
             command: eb deploy --profile default
 workflows:
