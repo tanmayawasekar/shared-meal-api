@@ -46,13 +46,16 @@ jobs:
             command: sudo pip3 install awsebcli
       - run:
             name: check
+            command: bash ./setup-eb.sh
+      - run:
+            name: check
             command: cat ~/.aws/config
       - run:
           name: install pip3
-          command: eb use ShareAMeal-env --profile default
+          command: eb use ShareAMeal-env --profile eb-cli
       - run:
             name: deploy and watch it work
-            command: eb deploy --profile default
+            command: eb deploy --profile eb-cli
 workflows:
   version: 2
   build_and_test_and_deploy:
