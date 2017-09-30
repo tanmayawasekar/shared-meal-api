@@ -45,8 +45,11 @@ jobs:
             name: install pip3
             command: sudo pip3 install awsebcli
       - run:
+          name: install pip3
+          command: eb use ShareAMeal-env --profile default
+      - run:
             name: deploy and watch it work
-            command: ./deploy.sh $CIRCLE_PREVIOUS_BUILD_NUM ShareAMeal-env
+            command: eb deploy --profile default
 workflows:
   version: 2 eb init thesis -p Node.js -r us-west-2
   build_and_test_and_deploy:
