@@ -11,7 +11,9 @@
     "dev": "npm i && gulp",
     "qa": "npm i && gulp qa",
     "env": "npm i && gulp env",
-    "test": "mocha"
+    "test": "mocha",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "author": "Tanmay Awasekar",
   "license": "ISC",
@@ -27,7 +29,8 @@
     "mongoose": "4.9.6",
     "morgan": "^1.8.1",
     "node-gyp": "^3.6.0",
-    "pm2": "^2.4.2"
+    "pm2": "^2.4.2",
+    "snyk": "^1.189.0"
   },
   "devDependencies": {
     "chai": "^4.1.2",
@@ -36,5 +39,6 @@
     "gulp-watch": "^4.3.11",
     "mocha": "^3.5.0",
     "run-sequence": "^1.2.2"
-  }
+  },
+  "snyk": true
 }
