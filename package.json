@@ -23,7 +23,7 @@
     "express": "^4.14.1",
     "helmet": "^3.5.0",
     "jsonwebtoken": "^7.3.0",
-    "mongodb": "^2.2.24",
+    "mongodb": "^3.6.1",
     "mongoose": "4.9.6",
     "morgan": "^1.8.1",
     "node-gyp": "^3.6.0",
