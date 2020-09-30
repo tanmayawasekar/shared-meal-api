@@ -27,7 +27,7 @@
     "mongoose": "4.9.6",
     "morgan": "^1.8.1",
     "node-gyp": "^3.6.0",
-    "pm2": "^2.4.2"
+    "pm2": "^4.3.0"
   },
   "devDependencies": {
     "chai": "^4.1.2",
